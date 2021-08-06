@@ -2,6 +2,19 @@
 
 class controller{
 
+    function login($con, $tabel, $username, $password, $redirect){
+        $sql = "SELECT * FROM $tabel WHERE username ='$username' and password ='$password' ";
+        $jalan = mysqli_query($con, $sql);
+
+        $cek = mysqli_num_rows($jalan);
+
+        if($cek > 0){
+            echo "<script>alert('Selamat Datang $username');document.location.href='$redirect'</script>";
+        }else{
+            echo "<script>alert('Username atau Password Salah!');document.location.href='index.php'</script>";
+        }
+    }
+
     //fungsi simpan 
     function simpan($con, $tabel, array $field, $redirect){
         $sql = "INSERT INTO $tabel SET ";
